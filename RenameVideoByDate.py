@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on 2025 Sep 07 23:48:54 
-@author: Arthur
+@author: ArthurVVVV
 """
 
 #import tkinter.filedialog
@@ -17,17 +17,19 @@ for Videos in VideoList:
     FolderPath,VideoName = os.path.split(Videos)
     if VideoName.lower().endswith(tuple([".mp4",".mov"])):
         try:
-            #Create Date Time
+            # Create Date Time
             FileCreatedTimeStamp = os.path.getctime(Videos)
-            #Modified Date Time            
+            # Modified Date Time            
             FileModifiedTimeStamp = os.path.getmtime(Videos)
-            
+
+            # Choose the earlier one
             FileTimeStamp = min(FileCreatedTimeStamp,FileModifiedTimeStamp)
             
             FileDateTime = datetime.datetime.fromtimestamp(FileTimeStamp)            
             new_name_prefix = FileDateTime.strftime("%Y-%m-%d %H-%M-%S")
             new_filename = f"{Prefix} {new_name_prefix}.mp4"
             new_file_path = os.path.join(FolderPath, new_filename)
+            
             # Handle potential filename conflicts 
             counter = 1
             while os.path.exists(new_file_path):
